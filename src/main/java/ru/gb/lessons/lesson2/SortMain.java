@@ -11,7 +11,7 @@ public class SortMain {
         SortAlgorithm[] algorithms = {
                 SortAlgorithm.ofName("BubbleSort", BubbleSort::sort),
                 SortAlgorithm.ofName("SelectionSort", SelectionSort::sort),
-                SortAlgorithm.ofName("InsertionSort", InsertionSort::sort),
+//                SortAlgorithm.ofName("InsertionSort", InsertionSort::sort),
                 SortAlgorithm.ofName("JavaSort", Arrays::sort)
         };
 
