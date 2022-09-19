@@ -1,6 +1,5 @@
 package ru.gb.lessons.lesson2;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 public class MergeSort {
@@ -10,16 +9,18 @@ public class MergeSort {
 
     // [1 2
 
-    public static <T> void sort(T[] array, Comparator<T> tComparator) {
 
+
+    public static <T> void sort(T[] array, Comparator<T> tComparator) {
+        mergeSort(array,array.length,tComparator);
     }
-    public static <T> void mergeSort(T[] a, int n) {
+    public static <T> void mergeSort(T[] a, int n, Comparator<T> tComparator) {
         if (n < 2) {
             return;
         }
         int mid = n / 2;
-        Object[] l = new Object[mid];
-        Object[] r = new Object[n - mid];
+        T[] l = (T[]) new Object[mid];
+        T[] r = (T[]) new Object[n - mid];
 
         for (int i = 0; i < mid; i++) {
             l[i] = a[i];
@@ -27,17 +28,17 @@ public class MergeSort {
         for (int i = mid; i < n; i++) {
             r[i - mid] = a[i];
         }
-        mergeSort(l, mid);
-        mergeSort(r, n - mid);
+        mergeSort(l, mid,tComparator);
+        mergeSort(r, n - mid,tComparator);
 
-        merge(a, l, r, mid, n - mid);
+        merge(a, l, r, mid, n - mid,tComparator);
     }
     public static <T>void merge(
-            T[] a, T[] l, T[] r, int left, int right) {
+            T[] a, T[] l, T[] r, int left, int right,Comparator<T> tComparator) {
 
         int i = 0, j = 0, k = 0;
         while (i < left && j < right) {
-            if (l[i] <= r[j]) {
+            if (tComparator.compare(l[i],r[j])<0){
                 a[k++] = l[i++];
             }
             else {
