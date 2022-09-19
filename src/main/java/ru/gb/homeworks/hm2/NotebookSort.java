@@ -27,8 +27,9 @@ public class NotebookSort {
      * */
 
     public static void main(String[] args) {
-        Notebook[] notebooks = getNotebooks(10000);
-        Notebook[] notebooks1 = new Notebook[10000];
+        int size = 10_000_000;
+        Notebook[] notebooks = getNotebooks(size);
+        Notebook[] notebooks1 = new Notebook[size];
         System.arraycopy(notebooks,0,notebooks1,0,notebooks.length);
         NotebookComparator comp = new NotebookComparator();
 
