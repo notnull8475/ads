@@ -39,7 +39,7 @@ public class DequeImpl<T> implements Deque<T> {
 
     @Override
     public T peekFirst() {
-        return null;
+        return (T) data[0];
     }
 
     @Override
@@ -53,7 +53,17 @@ public class DequeImpl<T> implements Deque<T> {
 
     @Override
     public T poolFirst() {
-        return null;
+        if (isEmpty()) {
+            return null;
+        }
+        T peek = peekFirst();
+        for (int i = 0; i < data.length - 1; i++) {
+            data[i] = data[i + 1];
+        }
+
+        size--;
+        return peek;
+
     }
 
     @Override
@@ -84,6 +94,7 @@ public class DequeImpl<T> implements Deque<T> {
                 .mapToObj(i -> data[i])
                 .map(String::valueOf)
                 .toList();
+
         return "[" + String.join(", ", dataInDoque) + "]";
     }
 }
