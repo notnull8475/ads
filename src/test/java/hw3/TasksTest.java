@@ -27,7 +27,7 @@ public class TasksTest {
     }
 
     @Test
-    private static void testV2() {
+    void testV2() {
         Task1 t = new Task1();
         int[] a1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16};
         int[] a2 = {1, 2, 4, 5, 6};
