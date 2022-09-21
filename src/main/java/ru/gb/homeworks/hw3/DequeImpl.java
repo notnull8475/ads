@@ -20,7 +20,7 @@ public class DequeImpl<T> implements Deque<T> {
             return false;
         }
         Object[] tmp = new Object[data.length];
-        System.arraycopy(data,0,tmp,1,size);
+        System.arraycopy(data, 0, tmp, 1, size);
         tmp[0] = o;
         data = tmp;
         size++;
@@ -80,8 +80,10 @@ public class DequeImpl<T> implements Deque<T> {
 
     @Override
     public String toString() {
-        List<String> dataInStack = IntStream.range(0, size) // [0, 1, 2, 3, ..., size]
+        List<String> dataInDoque = IntStream.range(0, size) // [0, 1, 2, 3, ..., size]
                 .mapToObj(i -> data[i])
                 .map(String::valueOf)
                 .toList();
+        return "[" + String.join(", ", dataInDoque) + "]";
     }
+}
