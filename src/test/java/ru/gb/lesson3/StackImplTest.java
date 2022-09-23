@@ -1,4 +1,4 @@
-package lesson3;
+package ru.gb.lesson3;
 
 import org.junit.jupiter.api.Test;
 import ru.gb.lessons.lesson3.Stack;
