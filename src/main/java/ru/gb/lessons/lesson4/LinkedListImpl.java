@@ -82,6 +82,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
         int counter = 0;
         Node<T> currentNode = head;
+
         while (counter != index && currentNode.next != null) {
             currentNode = currentNode.next;
             counter++;
@@ -113,15 +114,23 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
     @Override
     public void delete(int index) {
+        if (deleteCheck(index)) return;
+        deleteNodeWithReeturn(index);
+    }
+
+    private boolean deleteCheck(int index) {
         if (index == 0) {
             if (head == null) {
                 throw new IllegalArgumentException("Index " + index + " out of bounds");
             }
 
             head = head.next;
-            return;
+            return true;
         }
+        return false;
+    }
 
+    private Node<T> deleteNodeWithReeturn(int index) {
         Node<T> node = getNode(index - 1); // 2
         Node<T> nodeForRemove = node.next; // 3
         if (nodeForRemove == null) {
@@ -129,13 +138,44 @@ public class LinkedListImpl<T> implements LinkedList<T> {
         }
         Node<T> newNextNode = nodeForRemove.next; // 4
         node.next = newNextNode; // 2 -> 4
+        return newNextNode;
     }
 
     @Override
     public Iterator<T> iterator() {
-        // TODO: 22.09.2022 Реализовать итератор для связного списка. 
-        throw new UnsupportedOperationException("Not implemented yet");
+        // TODO: 22.09.2022 Реализовать итератор для связного списка.
+        return new LinkedListIterator();
     }
+
+    private class LinkedListIterator implements Iterator<T> {
+
+        private Node<T> cursor = null;
+        private int cursorNumb = -1;
+
+        @Override
+        public boolean hasNext() {
+            if (cursor == null) {
+                return head != null;
+            }
+            return cursor.next != null;
+        }
+
+        @Override
+        public T next() {
+            if (hasNext()) {
+                cursorNumb++;
+                cursor = getNode(cursorNumb);
+                return cursor.value;
+            } else throw new IllegalArgumentException("Has not next ");
+        }
+
+        @Override
+        public void remove() {
+            if (deleteCheck(cursorNumb)) return;
+            cursor = deleteNodeWithReeturn(cursorNumb);
+        }
+    }
+
 
     @Override
     public String toString() {
