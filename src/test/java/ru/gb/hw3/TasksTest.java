@@ -1,4 +1,4 @@
-package hw3;
+package ru.gb.hw3;
 
 import org.junit.jupiter.api.Test;
 import ru.gb.homeworks.hw3.Deque;
