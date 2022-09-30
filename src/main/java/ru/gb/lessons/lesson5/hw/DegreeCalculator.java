@@ -1,10 +1,8 @@
 package ru.gb.lessons.lesson5.hw;
 
 public class DegreeCalculator {
-
-    public int degree(int x, int n) {
-        // TODO: 26.09.2022 Возвести число x в степень n.
-        throw new UnsupportedOperationException();
+    public static int degree(int x, int n) {
+        if (n == 0) return 1;
+        return x*degree(x, n-1);
     }
-
 }
