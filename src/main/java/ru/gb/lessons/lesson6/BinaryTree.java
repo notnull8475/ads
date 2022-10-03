@@ -144,14 +144,29 @@ public class BinaryTree<T extends Comparable<T>> implements Tree<T> {
 
     @Override
     public boolean isBalanced() {
-        boolean flag = false;
         // TODO: 29.09.2022 Проверить, является ли дерево сбалансированным.
         // Дерево является сбалансированным, если глубины от любого узла до любых двух листьев
         // отличаются не более, чем на 1
-        return false;
+        int l = nodeDepth(root.left);
+        int r = nodeDepth(root.right);
+        System.out.println("l = " + l + " r = " + r);
+        return Math.abs(nodeDepth(root.left) - nodeDepth(root.right)) <= 1;
+
     }
 
-//    private Node balanceFind(Node node, Node node1){
-//
-//    }
+    private int nodeDepth(Node ofNode) {
+        Node cur = ofNode;
+        int depth = 0;
+        while (cur.left != null || cur.right != null) {
+            if (cur.left != null) {
+                cur = cur.left;
+                depth++;
+                continue;
+            }
+            cur = cur.right;
+            depth++;
+        }
+
+        return depth;
+    }
 }
