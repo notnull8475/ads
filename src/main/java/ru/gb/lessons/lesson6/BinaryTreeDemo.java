@@ -29,6 +29,7 @@ public class BinaryTreeDemo {
         List<Integer> integers = new ArrayList<>();
         tree.dfs(integers::add);
         System.out.println(integers);
+        System.out.println("is balanced:" + tree.isBalanced());
     }
 
     static void javaSet() {
